@@ -1,6 +1,6 @@
 ---
 title: "Getting started with R"
-author: Your name here
+author: Atena Karimi
 date: today
 format: html
 ---
@@ -10,7 +10,8 @@ format: html
 * Create a vector of the letters A, B and C.
 
 ```{r}
-# Your answer in code
+v <- c("A","B","C")
+v
 
 ```
 > Your answer as text
@@ -19,14 +20,14 @@ format: html
 
 * Assign the vector to a variable `my_letters`
 ```{r}
-# Your answer in code
+my_letters <- v
 
 ```
 
 
 * Check the what happens when you run `letters` (just this) on the command line.
 ```{r}
-# Your answer in code
+letters
 
 ```
 
@@ -36,7 +37,7 @@ format: html
 
 * What happens when you concatenate two vectors? Add `c(my_letters , my_letters)`
 ```{r}
-# Your answer in code
+c(my_letters,my_letters)
 
 
 ```
@@ -47,8 +48,8 @@ format: html
 
 * Add the number 1 to letters. What happens to the type of the vector?
 ```{r}
-# Your answer in code
-
+new_v <- c(letters,1)
+typeof(new_v)
 
 ```
 
@@ -64,9 +65,10 @@ format: html
 3. Add the vector containing 1, 2, 3, 4 to `my_vec`. What do you observe?
 
 ```{r}
-# Your answer in code
+my_vec <- c(1:8)
+my_vec+2
 
-
+my_vec + c(1:4)
 
 
 
@@ -94,11 +96,26 @@ format: html
 7. Compute the transpose of `A`
 
 ```{r}
-# Your answer in code
+#1
+matrix(c(4,9,10,1,5,7),nrow = 3)
 
+#2
+A <- matrix(c(4,9,10,1,5,7),nrow = 3)
 
+#3
+dim(A)
 
+#4
+A[2,2]
 
+#5
+A <- cbind(A,c(0,0,0))
+
+#6
+A[1,1] <- 0
+
+#7
+t(A)
 
 
 ```
@@ -106,13 +123,18 @@ format: html
 
 8. Are any values in `A` larger than 10? 
 ```{r}
-# Your answer in code
-
+A[A>10]
 ```
 
 9. Are all values in `A` smaller than 10?
 ```{r}
-# Your answer in code
+length(A)
+
+A[A<10]
+
+if (length(A[A<10]) == length(A)) {
+    print("Yes all the values in A is smaller than 10.")
+}
 
 ```
 
@@ -121,9 +143,12 @@ format: html
 1. Create a function that sums up two values even if provided as characters values
 
 ```{r}
-# Your answer in code
 
+sum_func <- function(x,y) {
+    return(as.numeric(x)+as.numeric(y))
+}
 
+sum_func('1','2')
 
 
 
@@ -135,10 +160,26 @@ format: html
 1. Create a function that returns the mean, median and standard deviation.
 
 ```{r}
-# Your answer in code
+math_func <- function(x) {
+    mean1 <- mean(x)
+        median1 <- median(x)
+        sd1 <- sd(x)
+        result <- c(mean1,median1 , sd1)
+        return(result)
+}
+# or
+math_func <- function(x) {
+    mean1 <- mean(x)
+        median1 <- median(x)
+        sd1 <- sd(x)
+        result <- list(mean = mean1,
+                       median = median1,
+                       sd = sd1)
+        return(result)
+}
 
 
-
+math_func(c(1,2,3))
 ```
 
 
@@ -147,8 +188,8 @@ format: html
 The output of `c('1' , "a", NA, "2", NA)` should be 2.
 
 ```{r}
-# Your answer in code
-
+v1 <- c('1' , "a", NA, "2", NA)
+sum(is.na(v1))
 
 
 ```
