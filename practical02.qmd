@@ -189,8 +189,8 @@ The output of `c('1' , "a", NA, "2", NA)` should be 2.
 
 ```{r}
 v1 <- c('1' , "a", NA, "2", NA)
-sum(is.na(v1))
 
+is.na(v1) |> sum()
 
 ```
 
